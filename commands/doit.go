@@ -464,15 +464,19 @@ func (c *CmdConfig) Display(d displayers.Displayable) error {
 }
 
 // CmdBuilder builds a new command.
-func CmdBuilder(parent *Command, cr CmdRunner, cliText, desc string, out io.Writer, options ...cmdOption) *Command {
-	return cmdBuilderWithInit(parent, cr, cliText, desc, out, true, options...)
+func CmdBuilderWithDocs(parent *Command, cr CmdRunner, cliText, shortdesc string, longdesc string, out io.Writer, options ...cmdOption) *Command {
+	return cmdBuilderWithInit(parent, cr, cliText, shortdesc, longdesc, out, true, options...)
 }
 
-func cmdBuilderWithInit(parent *Command, cr CmdRunner, cliText, desc string, out io.Writer, initCmd bool, options ...cmdOption) *Command {
+func CmdBuilder(parent *Command, cr CmdRunner, cliText, desc string, out io.Writer, options ...cmdOption) *Command {
+	return cmdBuilderWithInit(parent, cr, cliText, desc, desc, out, true, options...)
+}
+
+func cmdBuilderWithInit(parent *Command, cr CmdRunner, cliText, shortdesc string, longdesc string, out io.Writer, initCmd bool, options ...cmdOption) *Command {
 	cc := &cobra.Command{
 		Use:   cliText,
-		Short: desc,
-		Long:  desc,
+		Short: shortdesc,
+		Long:  longdesc,
 		Run: func(cmd *cobra.Command, args []string) {
 			c, err := NewCmdConfig(
 				cmdNS(cmd),
