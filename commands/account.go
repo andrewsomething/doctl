@@ -23,14 +23,14 @@ func Account() *Command {
 	cmd := &Command{
 		Command: &cobra.Command{
 			Use:   "account",
-			Short: "Retrieves account details",
+			Short: "Provides commands that retrieve account details",
 			Long:  `The subcommands of 'doctl account' retreive information about DigitalOcean accounts.
 
 For example, 'doctl account get' retrieves account profile details, and 'doctl account ratelimit' retrieves API usage details.`,
 		},
 	}
 
-	CmdBuilderWithDocs(cmd, RunAccountGet, "get", "Retrieves account details", `Retrieves the following details for your account:
+	CmdBuilderWithDocs(cmd, RunAccountGet, "get", "Retrieves account profile details", `Retrieves the following details from your account profile:
 
 - Email address
 - Account droplet limit
