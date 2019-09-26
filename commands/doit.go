@@ -80,14 +80,14 @@ func init() {
 	cobra.OnInitialize(initConfig)
 
 	DoitCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "",
-		fmt.Sprintf("config file (default is %s)", configPath()))
+		fmt.Sprintf("Specify a custom config file. The default is '%s'.", configPath()))
 	DoitCmd.PersistentFlags().StringVarP(&Token, doctl.ArgAccessToken, "t", "", "API V2 Access Token")
-	DoitCmd.PersistentFlags().StringVarP(&Output, "output", "o", "text", "output format [text|json]")
-	DoitCmd.PersistentFlags().StringVarP(&APIURL, "api-url", "u", "", "Override default API V2 endpoint")
-	DoitCmd.PersistentFlags().BoolVarP(&Verbose, doctl.ArgVerbose, "v", false, "verbose output")
-	DoitCmd.PersistentFlags().BoolVarP(&Trace, "trace", "", false, "trace api access")
+	DoitCmd.PersistentFlags().StringVarP(&Output, "output", "o", "text", "Desired output format [text|json]; 'text' by default")
+	DoitCmd.PersistentFlags().StringVarP(&APIURL, "api-url", "u", "", "Override default API endpoint")
+	DoitCmd.PersistentFlags().BoolVarP(&Verbose, doctl.ArgVerbose, "v", false, "Enable verbose output")
+	DoitCmd.PersistentFlags().BoolVarP(&Trace, "trace", "", false, "Show a log of network activity while performing a command")
 
-	DoitCmd.PersistentFlags().StringVarP(&Context, doctl.ArgContext, "", "", "authentication context name")
+	DoitCmd.PersistentFlags().StringVarP(&Context, doctl.ArgContext, "", "", "Specify a custom authentication context name")
 
 	viper.SetEnvPrefix("DIGITALOCEAN")
 	viper.BindEnv(doctl.ArgAccessToken, "DIGITALOCEAN_ACCESS_TOKEN")
@@ -504,9 +504,9 @@ func cmdBuilderWithInit(parent *Command, cr CmdRunner, cliText, shortdesc string
 
 	if cols := c.fmtCols; cols != nil {
 		formatHelp := fmt.Sprintf("Columns for output in a comma separated list. Possible values: %s",
-			strings.Join(cols, ","))
+			strings.Join(cols, ", "))
 		AddStringFlag(c, doctl.ArgFormat, "", "", formatHelp)
-		AddBoolFlag(c, doctl.ArgNoHeader, "", false, "hide headers")
+		AddBoolFlag(c, doctl.ArgNoHeader, "", false, "Return only the raw data, without headers, when calling this command")
 	}
 
 	return c

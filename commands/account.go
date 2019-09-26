@@ -23,10 +23,10 @@ func Account() *Command {
 	cmd := &Command{
 		Command: &cobra.Command{
 			Use:   "account",
-			Short: "Provides access to account commands.",
-			Long:  `Commands related to DigitalOcean accounts are accessible as subcommands of 'doctl account'
+			Short: "Retrieves account details",
+			Long:  `The subcommands of 'doctl account' retreive information about DigitalOcean accounts.
 
-For example: 'doctl account get' retrieves account details, and 'doctl account ratelimit' retrieves API usage details.`,
+For example, 'doctl account get' retrieves account profile details, and 'doctl account ratelimit' retrieves API usage details.`,
 		},
 	}
 
