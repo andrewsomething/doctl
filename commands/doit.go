@@ -40,7 +40,7 @@ const (
 var DoitCmd = &Command{
 	Command: &cobra.Command{
 		Use:   "doctl",
-		Short: "doctl is a command line interface for the DigitalOcean API.",
+		Short: "doctl is a command line interface (CLI) for the DigitalOcean API.",
 	},
 }
 
@@ -74,7 +74,7 @@ var cfgFile string
 var cfgFileWriter = defaultConfigFileWriter
 
 // ErrNoAccessToken is an error for when there is no access token.
-var ErrNoAccessToken = errors.New("no access token has been configured")
+var ErrNoAccessToken = errors.New("No access token has been provided.")
 
 func init() {
 	cobra.OnInitialize(initConfig)
@@ -117,7 +117,7 @@ func initConfig() {
 
 	if _, err := os.Stat(cfgFile); err == nil {
 		if err := viper.ReadInConfig(); err != nil {
-			log.Fatalln("reading initialization failed:", err)
+			log.Fatalln("Reading initialization failed:", err)
 		}
 	}
 
@@ -375,7 +375,7 @@ func NewCmdConfig(ns string, dc doctl.Config, out io.Writer, args []string, init
 			accessToken := c.getContextAccessToken()
 			godoClient, err := c.Doit.GetGodoClient(Trace, accessToken)
 			if err != nil {
-				return fmt.Errorf("unable to initialize DigitalOcean api client: %s", err)
+				return fmt.Errorf("Unable to initialize DigitalOcean api client: %s", err)
 			}
 
 			c.Keys = func() do.KeysService { return do.NewKeysService(godoClient) }
@@ -523,12 +523,12 @@ func writeConfig() error {
 
 	b, err := yaml.Marshal(viper.AllSettings())
 	if err != nil {
-		return errors.New("unable to encode configuration to YAML format")
+		return errors.New("Unable to encode configuration to YAML format.")
 	}
 
 	_, err = f.Write(b)
 	if err != nil {
-		return errors.New("unable to write configuration")
+		return errors.New("Unable to write configuration.")
 	}
 
 	return nil
