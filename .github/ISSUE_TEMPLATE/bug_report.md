@@ -7,32 +7,20 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Describe the Issue**
+<!-- Please provide a clear and concise description of the problem you are
+facing including the steps to reproduce the issue. -->
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**Your Environment:**
+<!-- Please provide the following information: -->
+ - Version: <!-- The output of `doctl version` -->
+ - OS: <!-- E.g. macOS Catalina, Ubuntu 19.04, etc -->
+ - Installation method: <!-- E.g. Installed from source, Homebrew, Snap package, Docker, etc -->
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+**Additional Details**
+<!-- Add any additional details that may be important for us to know.
+.
+Tip: Running a command with the `--trace` flag will display details about the
+requests made to the DigitalOcean API and can help with debugging. Remember to
+check the output for any sensitive information before posting. 
+-->
