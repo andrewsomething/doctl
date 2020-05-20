@@ -49,6 +49,12 @@ parts:
       bin/doctl: bin/doctl.real
 
 plugs:
+  docker-config:
+    interface: personal-files
+    read:
+      - $HOME/.docker/config.json
+    write:
+      - $HOME/.docker
   doctl-config:
     interface: personal-files
     write:
@@ -66,5 +72,6 @@ apps:
       - home
       - network
       - ssh-keys
+      - docker-config
       - doctl-config
       - kube-config
