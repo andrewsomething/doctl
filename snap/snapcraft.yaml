@@ -5,6 +5,7 @@ description: doctl is a command line tool for DigitalOcean services using the AP
 
 grade: stable
 confinement: strict
+base: core20
 
 build-packages:
   - gcc
@@ -12,20 +13,18 @@ build-packages:
 
 parts:
   launcher:
-    source: snap/local
+    source: snap/local/
     plugin: dump
     organize:
-      '*': bin/
-    override-stage: |
-      cd $SNAPCRAFT_PART_INSTALL
-      chmod +x bin/doctl-launch
-      snapcraftctl stage
+      doctl-launch: bin/
+    override-build: |
+      cd $SNAPCRAFT_PART_BUILD
+      chmod +x doctl-launch
+      snapcraftctl build
   doctl:
     after: [launcher]
     source: .
     plugin: go
-    go-importpath: github.com/digitalocean/doctl
-    go-packages: [github.com/digitalocean/doctl/cmd/doctl]
     override-pull: |
       git clone https://github.com/digitalocean/doctl.git .
     override-build: |
